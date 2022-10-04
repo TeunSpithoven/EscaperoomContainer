@@ -1,8 +1,8 @@
 FROM ubuntu:22.04
 
 # Update linux
-RUN apt update
-RUN apt upgrade
+RUN apt -y update
+RUN apt -y upgrade
 
 # Install php
 RUN apt install software-properties-common apt-transport-https -y
