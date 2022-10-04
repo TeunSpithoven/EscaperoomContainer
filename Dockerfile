@@ -7,15 +7,15 @@ RUN apt -y upgrade
 # Install php
 RUN apt install software-properties-common apt-transport-https -y
 RUN add-apt-repository ppa:ondrej/php -y
-RUN apt install php8.1 libapache2-mod-php8.1
+RUN apt install php8.1 libapache2-mod-php8.1 -y
 
-RUN apt install curl unzip
-RUN apt install php php-curl
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN apt -y install curl unzip
+RUN apt -y install php php-curl
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php -y
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer -y
 
 # Install node and npm
-RUN apt install nodejs npm
+RUN apt install nodejs npm -y
 
 # INSTALL NGINX
 RUN apt install nginx
