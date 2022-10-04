@@ -1,24 +1,24 @@
-FROM alpine:latest
+FROM ubuntu:22.04
 
-# Update alpine linux
-RUN apk update
+# Update linux
+RUN apt update
 
-# Install node and npm
-RUN apk add nodejs npm
 
 # Install php
-RUN apk add php8=8.1.1
+RUN apt install software-properties-common apt-transport-https -y
+RUN add-apt-repository ppa:ondrej/php -y
+RUN apt install php8.1 libapache2-mod-php8.1
 
-# Install depentencies
-RUN apk add bash
-RUN apk add curl
-RUN apk add php-phar
-RUN apk add php-iconv
-RUN apk add php-openssl
-RUN apk add composer
+RUN apt install curl unzip
+RUN apt install php php-curl
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+# Install node and npm
+RUN apt install nodejs npm
 
 # INSTALL NGINX
-RUN apk add nginx
+RUN apt install nginx
 
 # Copy the project files
 COPY . .
