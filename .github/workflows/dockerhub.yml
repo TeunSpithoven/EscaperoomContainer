@@ -14,7 +14,7 @@ jobs:
     # huts
     steps:
     - name: Install Docker
-      uses: docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@v2
     - name: Login to Docker
       run: docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
     - name: Build Image
