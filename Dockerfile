@@ -7,7 +7,7 @@ RUN apk update
 RUN apk add nodejs npm
 
 # Install php
-RUN apk add php8
+RUN apk add php8.1
 
 # Install depentencies
 RUN apk add bash
