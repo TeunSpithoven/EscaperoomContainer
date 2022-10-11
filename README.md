@@ -4,6 +4,14 @@ php artisan migrate
 php artisan serve
 npm run hot
 
+React code staat in resources/js
+
+http://localhost:8000/dashboard
+
+
+dockerfile heeft nu composer en npm mar moet nog php 8.1 of hoger hebben idpv 5
+daarna nog sqlite maken en runnen die hap!
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

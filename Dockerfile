@@ -1,41 +1,22 @@
-FROM ubuntu:22.04
+FROM php:apache
 
-# Update linux
-RUN apt -y update
-RUN apt -y upgrade
 
-# Install php
-RUN apt install software-properties-common apt-transport-https -y
-RUN add-apt-repository ppa:ondrej/php -y
-RUN apt install php8.1 libapache2-mod-php8.1 -y
+RUN apt-get update && apt-get install -y libmcrypt-dev \
+    mysql-client libmagickwand-dev --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+&& docker-php-ext-install mcrypt pdo_mysql
 
-RUN apt -y install curl unzip
-RUN apt -y install php php-curl
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php -y
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer -y
+#Install Node and npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
 
-# Install node and npm
-RUN apt install nodejs npm -y
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# INSTALL NGINX
-RUN apt install nginx
 
-# Copy the project files
-COPY . .
+WORKDIR /var/www/html
+COPY . /var/www/html/
 
-# Install dependencies
-RUN composer update
-RUN composer install
 RUN npm install
-
-# Make and migrate the database
-WORKDIR /database
-RUN touch database.sqlite
-WORKDIR /
-RUN php artisan migrate
-
-# Run the application
-RUN php artisan build
-RUN npm run production
-
-EXPOSE 80
+RUN composer install

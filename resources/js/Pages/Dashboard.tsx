@@ -36,6 +36,7 @@ const Dashboard: React.VFC = () => {
 
 	return (
 		<React.Fragment>
+            <div>Hallo react! ik ben Teun. Aangenaam</div>
 			<div className="flex space-between space-x-6 mb-6">
 				<Card title={`${roomsOpened}`} description="ROOMS STARTED">
 					<PuzzleIcon className="w-20 h-20 text-pink-600" />
