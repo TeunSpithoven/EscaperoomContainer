@@ -1,3 +1,5 @@
+Status: Dockerfile work in progress
+
 configure a database (sqlite is easy for development)
 install dependencies with npm install and composer install
 php artisan migrate
